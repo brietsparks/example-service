@@ -1,0 +1,7 @@
+env: standard
+runtime: nodejs14
+env_variables:
+  DB_USER: postgres
+  DB_PASSWORD: password
+  DB_HOST: 127.0.0.1
+  DB_DATABASE: postgres
