@@ -1,20 +1,52 @@
 {
-  "name": "example-service",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "deploy": "gcloud app deploy"
+  "name": "node-typescript-boilerplate",
+  "version": "0.0.0",
+  "description": "An example app",
+  "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
+    "@types/jest": "~27.5",
+    "@types/node": "~16",
+    "@typescript-eslint/eslint-plugin": "~5.26",
+    "@typescript-eslint/parser": "~5.26",
+    "eslint": "~8.16",
+    "eslint-config-prettier": "~8.5",
+    "eslint-plugin-jest": "~26.2",
+    "jest": "~28.1",
+    "nodemon": "^2.0.18",
+    "prettier": "~2.6",
+    "rimraf": "~3.0",
+    "testcontainers": "^8.11.1",
+    "ts-jest": "~28.0",
+    "ts-node": "^10.8.1",
+    "tsutils": "~3.21",
+    "typescript": "~4.7"
   },
-  "author": "Briet Sparks",
-  "license": "ISC",
+  "scripts": {
+    "dev": "nodemon src/main.ts",
+    "db:up": "ts-node src/main.ts db:up",
+    "db:down": "ts-node src/main.ts db:down",
+    "start": "node build/src/main.js",
+    "clean": "rimraf coverage build tmp",
+    "prebuild": "npm run lint",
+    "build": "tsc -p tsconfig.json",
+    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts --ext .mts",
+    "test": "jest",
+    "prettier": "prettier --config .prettierrc --write ."
+  },
+  "license": "Apache-2.0",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "knex": "^0.95.14",
-    "nodemon": "^2.0.15",
-    "pg": "^8.7.1"
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/knex": "^0.16.1",
+    "@types/uuid": "^8.3.4",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "knex": "^0.95.6",
+    "pg": "^8.7.3",
+    "tslib": "~2.4",
+    "uuid": "^8.3.2"
   }
 }

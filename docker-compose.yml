@@ -1,12 +1,18 @@
-# development use only
 version: '3.7'
 
 services:
   postgres:
     image: postgres
     ports:
-      - '5432:5432'
+      - "5432:5432"
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=root
+    volumes:
+      - ./docker-compose.init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U root -d exampleapp" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
